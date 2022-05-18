@@ -1,6 +1,4 @@
-*,
-*::after,
-*::before {
+*, *::after, *::before {
   box-sizing: border-box;
   font-family: Arial;
 }
@@ -31,9 +29,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: hsl(var(--hue, 200),
-      var(--saturation, 1%),
-      calc(var(--lightness-offset, 0%) + var(--lightness, 51%)));
+  background-color: hsl(
+    var(--hue, 200),
+    var(--saturation, 1%),
+    calc(var(--lightness-offset, 0%) + var(--lightness, 51%))
+  );
   color: white;
   fill: white;
   text-transform: uppercase;
@@ -46,13 +46,12 @@ body {
   grid-column: span 3;
 }
 
-.key>svg {
+.key > svg {
   width: 1.75em;
   height: 1.75em;
 }
 
-.key:hover,
-.key:focus {
+.key:hover, .key:focus {
   --lightness-offset: 10%;
 }
 
@@ -125,6 +124,58 @@ body {
 
 .tile.flip {
   transform: rotateX(90deg);
+}
+
+@keyframes shake {
+  10% {
+    transform: translateX(-5%);
+  }
+
+  30% {
+    transform: translateX(5%);
+  }
+
+  50% {
+    transform: translateX(-7.5%);
+  }
+
+  70% {
+    transform: translateX(7.5%);
+  }
+
+  90% {
+    transform: translateX(-5%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes dance {
+  20% {
+    transform: translateY(-50%);
+  }  
+
+  40% {
+    transform: translateY(5%);
+  }  
+
+  60% {
+    transform: translateY(-25%);
+  }  
+
+  80% {
+    transform: translateY(2.5%);
+  }  
+
+  90% {
+    transform: translateY(-5%);
+  }  
+
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .alert-container {
