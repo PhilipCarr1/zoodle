@@ -1,4 +1,3 @@
-// import the word lists
 const targetWords = [
   "akita",
   "bison",
@@ -33,7 +32,6 @@ const targetWords = [
   "tiger",
   "zebra"
 ]
-
 const dictionary = [
   "akita",
   "bison",
@@ -82,7 +80,6 @@ const dictionary = [
   "zebra",
   "zorse"
 ]
-// end
 
 const WORD_LENGTH = 5
 const FLIP_ANIMATION_DURATION = 500
@@ -93,7 +90,9 @@ const guessGrid = document.querySelector("[data-guess-grid]")
 const offsetFromDate = new Date(2022, 0, 1)
 const msOffset = Date.now() - offsetFromDate
 const dayOffset = msOffset / 1000 / 60 / 60 / 24
-const targetWord = targetWords[Math.floor(dayOffset)]
+const targetWord = targetWords[Math.floor(dayOffset)%32]
+console.log(targetWords[0])
+console.log(Math.floor(dayOffset))
 
 startInteraction()
 
@@ -162,7 +161,7 @@ function deleteKey() {
 function submitGuess() {
   const activeTiles = [...getActiveTiles()]
   if (activeTiles.length !== WORD_LENGTH) {
-    showAlert("Not enough letters")
+    showAlert("Must be 5 letters")
     shakeTiles(activeTiles)
     return
   }
@@ -217,6 +216,7 @@ function flipTile(tile, index, array, guess) {
     { once: true }
   )
 }
+console.log(targetWord)
 
 function getActiveTiles() {
   return guessGrid.querySelectorAll('[data-state="active"]')
@@ -247,5 +247,35 @@ function shakeTiles(tiles) {
       },
       { once: true }
     )
+  })
+}
+
+function checkWinLose(guess, tiles) {
+  if (guess === targetWord) {
+    showAlert("You Win", 5000)
+    danceTiles(tiles)
+    stopInteraction()
+    return
+  }
+
+  const remainingTiles = guessGrid.querySelectorAll(":not([data-letter])")
+  if (remainingTiles.length === 0) {
+    showAlert("Better luck tomorrow")
+    stopInteraction()
+  }
+}
+
+function danceTiles(tiles) {
+  tiles.forEach((tile, index) => {
+    setTimeout(() => {
+      tile.classList.add("dance")
+      tile.addEventListener(
+        "animationend",
+        () => {
+          tile.classList.remove("dance")
+        },
+        { once: true }
+      )
+    }, (index * DANCE_ANIMATION_DURATION) / 5)
   })
 }
