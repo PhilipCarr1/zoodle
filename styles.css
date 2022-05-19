@@ -9,7 +9,7 @@ body {
   flex-direction: column;
   min-height: 100vh;
   margin: 0;
-  padding: 1em;
+  padding: 0;
   font-size: clamp(.5rem, 2.5vmin, 1.5rem);
 }
 
@@ -205,4 +205,38 @@ body {
 
 .alert.hide {
   opacity: 0;
+}
+
+header {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  margin-top: 0;
+  height: 50px;
+}
+
+.page-title {
+  color: white;
+  margin-top: -3px;
+}
+
+.headerbtn {
+  background-color: #515251;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding:5px;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  font-size: 15px;
+  margin: 4px 2px;
+  margin-top: -72px;
+  margin-right: 20px;
+  cursor: pointer;
+  float: right;
 }
