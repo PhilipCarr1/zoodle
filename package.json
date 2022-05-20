@@ -4,7 +4,12 @@
   "description": "![Screenshot](zoodle.png)",
   "main": "script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "react-scripts start",
+    "start": "serve -s build",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -15,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/PhilipCarr1/zoodle/issues"
   },
-  "homepage": "https://github.com/PhilipCarr1/zoodle#readme"
+  "homepage": "https://github.com/PhilipCarr1/zoodle#readme",
+  "dependencies": {
+    "serve": "^13.0.2"
+  }
 }
